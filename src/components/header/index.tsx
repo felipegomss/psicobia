@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const Header = () => {
   return (
-    <header className="flex flex-col justify-between w-full bg-white dark:bg-gray-950">
+    <header className="flex flex-col justify-between w-full">
       <div className="flex items-center justify-between h-16">
         <Link href="/" className="flex items-center" prefetch={false}>
           <Flower2 className="h-10 w-10" />

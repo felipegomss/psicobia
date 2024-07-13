@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SessionProvider>
-        <body className={`${inter.className} max-w-7xl m-auto px-4`}>
+        <body className={`${inter.className} max-w-7xl m-auto px-4 bg-noise`}>
           <Header />
           {children}
         </body>

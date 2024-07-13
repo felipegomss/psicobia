@@ -1,11 +1,38 @@
 "use client";
+import { Toaster } from "@/components/ui/sonner";
 import { Flower2 } from "lucide-react";
 import { signIn } from "next-auth/react";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSignIn = async (event: any) => {
+    event.preventDefault();
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      switch (result.error) {
+        case "Firebase: Error (auth/invalid-credential).":
+          setError("auth/invalid-credential");
+          toast.error("Email ou senha incorreta");
+          break;
+        default:
+          toast.error("Erro ao fazer login, tente novamente em instantes");
+          break;
+      }
+    } else {
+      window.location.href = "/agendamento";
+    }
+  };
 
   return (
     <>
@@ -18,7 +45,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -65,8 +92,15 @@ export default function Login() {
                   required
                   autoComplete="current-password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full px-3 py-1.5 rounded-md border-0 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-amber-800 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    setError("");
+                    setPassword(e.target.value);
+                  }}
+                  className={`block w-full px-3 py-1.5 rounded-md border-0 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-amber-800 sm:text-sm sm:leading-6 ${
+                    error === "auth/invalid-credential"
+                      ? "ring-2 ring-amber-800"
+                      : ""
+                  }`}
                 />
               </div>
             </div>
@@ -74,15 +108,7 @@ export default function Login() {
             <div>
               <button
                 type="submit"
-                onClick={async (e) => {
-                  e.preventDefault();
-                  await signIn("credentials", {
-                    email,
-                    password,
-                    redirect: true,
-                    callbackUrl: "/agendamento",
-                  });
-                }}
+                onClick={() => handleSignIn(event)}
                 disabled={!email || !password}
                 className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-amber-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-800"
               >
@@ -102,6 +128,7 @@ export default function Login() {
           </p>
         </div>
       </div>
+      <Toaster />
     </>
   );
 }

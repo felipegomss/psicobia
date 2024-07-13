@@ -25,7 +25,8 @@ export const authOptions = {
             return null;
           })
           .catch((error) => {
-            console.error(error);
+            console.error("Erro ao realizar login", error);
+            throw error;
           });
       },
     }),

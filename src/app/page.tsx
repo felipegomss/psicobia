@@ -15,6 +15,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import Link from "next/link";
+import Articles from "@/components/articles";
+import { bianca_114_base64 } from "../../public/assets/BIANCA_114_base64";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default function Home() {
   const handleWhatsAppClick = () => {
@@ -22,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col my-5">
+    <main className="flex min-h-screen flex-col my-5 gap-8 ">
       <div className="py-16">
         <h1 className="scroll-m-20 text-4xl font-light tracking-tight lg:text-5xl">
           BIANCA DA SILVA VIEIRA
@@ -99,16 +102,21 @@ export default function Home() {
             </AlertDialogContent>
           </AlertDialog>
         </div>
-        <div className="rounded-full">
+        <AspectRatio
+          ratio={9 / 16}
+          className="relative rounded-full border-8 border-primary bg-amber-800"
+        >
           <Image
             src="/assets/BIANCA_114.JPG"
-            className="w-full rounded-full border-8 border-primary"
+            className="w-full rounded-full"
             alt=""
-            width={1920}
-            height={1080}
+            fill
+            blurDataURL={bianca_114_base64}
+            placeholder="blur"
           />
-        </div>
+        </AspectRatio>
       </div>
+      <Articles />
     </main>
   );
 }

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Calendar, XIcon } from "lucide-react";
+import { Calendar, Eye, Star, Unlock, XIcon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,6 +18,14 @@ import Link from "next/link";
 import Articles from "@/components/articles";
 import { bianca_114_base64 } from "../../public/assets/BIANCA_114_base64";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function Home() {
   const handleWhatsAppClick = () => {
@@ -38,7 +46,7 @@ export default function Home() {
       <div className="grid md:grid-cols-2 gap-8 py-2">
         <div>
           <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Lorem ipsum
+            Como posso te ajudar?
           </h2>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
@@ -116,7 +124,87 @@ export default function Home() {
           />
         </AspectRatio>
       </div>
+      <div className="space-y-6">
+        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+          A Terapia Fenomenológica Existencial
+        </h3>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <AspectRatio ratio={16 / 9}>
+              <Image src={"/assets/diva.jpg"} alt="" fill />
+            </AspectRatio>
+            <blockquote className="my-6 border-l-2 pl-6 italic">
+              “A vida não tem sentido, à priori. Antes de começarmos a viver, a
+              vida, em si, não é nada, mas nos cabe dar-lhe sentido, e o valor
+              da vida não é outra coisa senão este sentido que escolhemos”
+            </blockquote>
+          </div>
+          <div>
+            <p className="leading-7">
+              Na terapia fenomenológica existencial, cada indivíduo é convidado
+              a explorar sua própria experiência única e significados pessoais.
+              Esta abordagem profundamente humanística foca no aqui e agora,
+              ajudando a compreender e enfrentar desafios através da reflexão
+              autêntica e do diálogo terapêutico.
+            </p>
+            <p className="leading-7">
+              Em um ambiente acolhedor e compassivo, trabalharemos juntos para
+              entender suas preocupações e encontrar caminhos para o crescimento
+              pessoal. A terapia fenomenológica existencial é uma jornada de
+              autodescoberta e autoaceitação, guiada pela sua própria narrativa
+              e experiências únicas.
+            </p>
+            <p className="leading-7">
+              A terapia fenomenológica existencial é adequada para aqueles que
+              buscam uma abordagem holística e integrativa para lidar com
+              questões pessoais, emocionais e existenciais. Se você está pronto
+              para iniciar uma jornada de autoconhecimento e crescimento
+              pessoal, esta abordagem terapêutica pode ser o próximo passo
+              transformador em sua vida.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-evenly">
+          <BenefitCard
+            icon={<Eye className="w-8 h-8 mb-4" />}
+            title="Autoconhecimento Profundo:"
+            text="Explore suas experiências e emoções de maneira genuína."
+          />
+
+          <BenefitCard
+            icon={<Unlock className="w-8 h-8 mb-4" />}
+            title="Empoderamento:"
+            text="Desenvolva habilidades para lidar com dificuldades de forma mais consciente e eficaz."
+          />
+
+          <BenefitCard
+            icon={<Star className="w-8 h-8 mb-4" />}
+            title="Transformação Pessoal:"
+            text="Promova mudanças significativas em sua vida, alinhadas com seus valores e aspirações."
+          />
+        </div>
+      </div>
       <Articles />
     </main>
   );
 }
+
+const BenefitCard = ({
+  icon,
+  title,
+  text,
+}: {
+  icon: JSX.Element;
+  title: string;
+  text: string;
+}) => (
+  <Card className="w-[350px]">
+    <CardHeader>
+      {icon}
+      <CardTitle>{title}</CardTitle>
+      <CardDescription>{text}</CardDescription>
+    </CardHeader>
+  </Card>
+);

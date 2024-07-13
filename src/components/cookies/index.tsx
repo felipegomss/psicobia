@@ -7,7 +7,10 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 
 export default function Cookies() {
-  if (localStorage.getItem("cookies") !== "true")
+  if (
+    typeof window !== "undefined" &&
+    localStorage.getItem("cookies") !== "true"
+  )
     setTimeout(() => {
       toast(
         <div className="space-y-4">

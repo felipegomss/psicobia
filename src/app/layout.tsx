@@ -1,10 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, Roboto, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import SessionProvider from "@/lib/SessionProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSerif = Playfair_Display({
+  subsets: ["latin"],
+  weight: "700",
+  variable: "--font-serif",
+});
+const fontDefault = Roboto({
+  subsets: ["latin"],
+  weight: ["700", "300", "400", "900", "100", "500"],
+});
+
+const fontTitle = Raleway({
+  subsets: ["latin"],
+  weight: ["700", "300", "400", "900", "100", "500"],
+  style: "italic",
+  variable: "--font-title",
+});
 
 export const metadata: Metadata = {
   title: "Bianca Vieira - Psicologa",
@@ -17,9 +32,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="pt-br"
+      className={`${fontSerif.variable} ${fontTitle.variable}`}
+    >
       <SessionProvider>
-        <body className={`${inter.className} max-w-7xl m-auto px-4 bg-noise`}>
+        <body
+          className={`${fontDefault.className} max-w-7xl m-auto px-4 bg-noise`}
+        >
           <Header />
           {children}
         </body>

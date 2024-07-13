@@ -93,7 +93,7 @@ export default function Articles() {
             <li className="py-2 border-b" key={index}>
               <p className="my-2 text-sm text-zinc-600">{formattedDate}</p>
               <a href={article.link} target="_blank">
-                <h1 className="text-xl font-black">{article.title}</h1>
+                <h4 className="text-xl font-black">{article.title}</h4>
                 <p dangerouslySetInnerHTML={createMarkup()} />
               </a>
               <div className="flex flex-wrap gap-2 my-4">

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import SessionProvider from "@/lib/SessionProvider";
 import Cookies from "@/components/cookies";
+import { Analytics } from "@vercel/analytics/react";
 
 const fontSerif = Playfair_Display({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Cookies />
+          <Analytics />
         </body>
       </SessionProvider>
     </html>

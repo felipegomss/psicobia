@@ -65,7 +65,7 @@ const ListLinks = () => {
         className="text-sm font-medium hover:underline"
         prefetch={false}
       >
-        Agendar encontrox
+        Agendar encontro
       </Link>
 
       <Link

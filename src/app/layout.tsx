@@ -3,6 +3,7 @@ import { Playfair_Display, Roboto, Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import SessionProvider from "@/lib/SessionProvider";
+import Cookies from "@/components/cookies";
 
 const fontSerif = Playfair_Display({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Cookies />
         </body>
       </SessionProvider>
     </html>

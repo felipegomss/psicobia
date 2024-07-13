@@ -20,20 +20,25 @@ import { bianca_114_base64 } from "../../public/assets/BIANCA_114_base64";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { emailLink, whatsappLink } from "@/lib/utils";
 
 export default function Home() {
   const handleWhatsAppClick = () => {
-    window.open("https://api.whatsapp.com/send?phone=5571996755965", "_blank");
+    window.open(whatsappLink, "_blank");
   };
 
   return (
-    <main className="flex min-h-screen flex-col my-5 gap-8 ">
+    <main className="flex min-h-screen flex-col my-5 gap-16">
       <div className="py-16">
         <h1 className="scroll-m-20 text-4xl font-light tracking-tight lg:text-5xl">
           BIANCA DA SILVA VIEIRA
@@ -131,7 +136,7 @@ export default function Home() {
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <AspectRatio ratio={16 / 9}>
+            <AspectRatio ratio={16 / 9} className="bg-amber-800">
               <Image src={"/assets/diva.jpg"} alt="" fill />
             </AspectRatio>
             <blockquote className="my-6 border-l-2 pl-6 italic">
@@ -187,6 +192,103 @@ export default function Home() {
         </div>
       </div>
       <Articles />
+      <div className="space-y-6">
+        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+          Perguntas Frequentes
+        </h3>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="como-funcionam-as-sessoes">
+            <AccordionTrigger>Como funcionam as sessões?</AccordionTrigger>
+            <AccordionContent>
+              As sessões são realizadas de forma online, com duração de 50
+              minutos, via Google Meet. Este formato permite um atendimento
+              confortável e acessível onde quer que você esteja.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="atendimento-por-convenio">
+            <AccordionTrigger>Aceita convênio?</AccordionTrigger>
+            <AccordionContent>
+              Atendo apenas particular, mas muitas pessoas conseguem reembolso
+              pelo plano de saúde. Recomendo que verifique com seu convênio as
+              opções disponíveis para você.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="como-agendar-consulta">
+            <AccordionTrigger>
+              Como posso agendar uma consulta?
+            </AccordionTrigger>
+            <AccordionContent>
+              Para agendar sua primeira consulta, basta entrar em contato pelo{" "}
+              <Link
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-800 hover:underline"
+              >
+                WhatsApp
+              </Link>{" "}
+              ou{" "}
+              <Link
+                href={emailLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-800 hover:underline"
+              >
+                email
+              </Link>
+              . Após confirmarmos os detalhes, você receberá acesso à plataforma
+              onde poderá agendar suas próximas consultas com facilidade.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="preparar-para-atendimento-online">
+            <AccordionTrigger>
+              Como se preparar para o atendimento online?
+            </AccordionTrigger>
+            <AccordionContent>
+              Para um atendimento online eficaz, escolha um ambiente tranquilo e
+              privado. Certifique-se de ter uma boa conexão à internet e esteja
+              pronto para se concentrar completamente na sua sessão.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="abordagem-terapeutica">
+            <AccordionTrigger>
+              Qual é a abordagem terapêutica utilizada?
+            </AccordionTrigger>
+            <AccordionContent>
+              Utilizo uma abordagem fenomenológica existencial humanista,
+              centrada na sua experiência pessoal e no seu desenvolvimento
+              individual.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="como-sao-as-sessoes">
+            <AccordionTrigger>
+              Como são as sessões de terapia fenomenológica existencial?
+            </AccordionTrigger>
+            <AccordionContent>
+              Nas sessões, vamos explorar juntos suas questões e experiências de
+              vida de maneira profunda e respeitosa. O objetivo é ajudá-lo a
+              encontrar novos significados e caminhos para o seu bem-estar
+              emocional.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="duvidas-adicionais">
+            <AccordionTrigger>Mais alguma dúvida?</AccordionTrigger>
+            <AccordionContent>
+              Para qualquer outra questão, sinta-se à vontade para entrar em
+              contato diretamente pelo{" "}
+              <Link
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-800 hover:underline"
+              >
+                WhatsApp
+              </Link>
+              . Estou aqui para ajudar!
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
     </main>
   );
 }

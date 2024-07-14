@@ -42,7 +42,8 @@ export default function Home() {
     <main className="flex min-h-screen flex-col my-5 gap-16">
       <BackgroundBlur top="-10rem" left="50%" rotate="30deg" />
       <BackgroundBlur top="50%" left="10%" rotate="25deg" />
-      <BackgroundBlur bottom="50%rem" left="100%" rotate="17deg" />
+      <BackgroundBlur top="60rem" right="50%" rotate="180deg" />
+      <BackgroundBlur bottom="50%" left="100%" rotate="17deg" />
       <BackgroundBlur bottom="10rem" left="0%" rotate="30deg" />
 
       <div className="py-16">

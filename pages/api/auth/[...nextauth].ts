@@ -20,7 +20,11 @@ export const authOptions = {
         )
           .then((userCredential) => {
             if (userCredential.user) {
-              return userCredential.user;
+              return {
+                name: userCredential.user.displayName,
+                email: userCredential.user.email,
+                image: userCredential.user.photoURL,
+              };
             }
             return null;
           })

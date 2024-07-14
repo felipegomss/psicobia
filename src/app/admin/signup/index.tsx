@@ -2,18 +2,33 @@
 
 import { Toaster } from "@/components/ui/sonner";
 import { auth } from "@/lib/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Flower2 } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import {
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  AlertDialogFooter,
+  AlertDialogHeader,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
+  const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const changePasswordURL = "http://localhost:3000/change-password";
-  const pagePassword = process.env.NEXT_PUBLIC_PROTECTED_PAGE_PASSWORD;
+
+  const db = getFirestore();
 
   function generateRandomPassword() {
     var length = 6,
@@ -72,10 +87,25 @@ export default function Signup() {
     const password = generateRandomPassword();
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+
         sendEmail(password);
 
         toast.success("Paciente Cadastrado com sucesso");
+
+        await setDoc(doc(db, "usuarios", user.uid), {
+          nome: nome,
+          email: email,
+          cpf: cpf,
+          isAtivo: true,
+        }).catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+
+        return updateProfile(user, {
+          displayName: nome,
+        });
       })
       .catch((error) => {
         const errorMessage =
@@ -85,74 +115,17 @@ export default function Signup() {
         toast.error(errorMessage);
       });
     setNome("");
+    setCpf("");
     setEmail("");
   };
 
-  const handlePasswordSubmit = (event: any) => {
-    event.preventDefault();
-    if (password === pagePassword) {
-      setIsAuthenticated(true);
-    } else {
-      toast.error("Senha incorreta");
-    }
-    setPassword("");
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-zinc-900">
-            Proteção de Página
-          </h2>
-        </div>
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6">
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-zinc-900"
-              >
-                Senha
-              </label>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full px-3 py-1.5 rounded-md border-0 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-amber-800 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <button
-                type="submit"
-                onClick={(e) => handlePasswordSubmit(e)}
-                className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-amber-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-800"
-              >
-                Entrar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Adicionar novo paciente</DialogTitle>
+        </DialogHeader>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <Flower2 className="m-auto h-12 w-12" />
-          <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-zinc-900">
-            Adicionar novo paciente
-          </h2>
-        </div>
-
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6">
             <div>
               <label
@@ -170,6 +143,26 @@ export default function Signup() {
                   autoComplete="nome"
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
+                  className="block w-full px-3 py-1.5 rounded-md border-0 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-amber-800 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="cpf"
+                className="block text-sm font-medium leading-6 text-zinc-900"
+              >
+                CPF do paciente
+              </label>
+              <div className="mt-2">
+                <input
+                  id="cpf"
+                  name="fpc"
+                  type="cpf"
+                  required
+                  autoComplete="cpf"
+                  value={cpf}
+                  onChange={(e) => setCpf(e.target.value)}
                   className="block w-full px-3 py-1.5 rounded-md border-0 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-amber-800 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -194,18 +187,18 @@ export default function Signup() {
                 />
               </div>
             </div>
-            <div>
-              <button
-                onClick={signUp}
-                disabled={!email}
-                className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-amber-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-800"
-              >
-                Cadastrar paciente
-              </button>
-            </div>
           </form>
         </div>
-      </div>
+        <DialogFooter>
+          <Button
+            onClick={signUp}
+            disabled={!email}
+            className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-amber-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-800"
+          >
+            Cadastrar paciente
+          </Button>
+        </DialogFooter>
+      </DialogContent>
       <Toaster />
     </>
   );

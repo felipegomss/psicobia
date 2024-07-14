@@ -3,10 +3,13 @@ import { Toaster } from "@/components/ui/sonner";
 import { whatsappLink } from "@/lib/utils";
 import { Flower2 } from "lucide-react";
 import { signIn } from "next-auth/react";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import React, { use, useState } from "react";
 import { toast } from "sonner";
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -31,7 +34,9 @@ export default function Login() {
           break;
       }
     } else {
-      window.location.href = "/agendamento";
+      email === "psicobiancavieira@gmail.com"
+        ? router.push("/admin")
+        : router.push("/agendamento");
     }
   };
 

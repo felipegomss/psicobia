@@ -129,7 +129,7 @@ export default function Home() {
           <Image
             src="/assets/BIANCA_114.JPG"
             className="w-full rounded-full"
-            alt=""
+            alt="Psicóloga Bianca, com cabelo liso nos ombros, sorrindo e segurando um livro com o título 'Psicologia'"
             fill
             blurDataURL={bianca_114_base64}
             placeholder="blur"
@@ -144,12 +144,19 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <AspectRatio ratio={16 / 9} className="bg-amber-800">
-              <Image src={"/assets/diva.jpg"} alt="" fill />
+              <Image
+                src={"/assets/diva.jpg"}
+                alt="Sala aconchegante com uma poltrona marrom em primeiro plano, um piano e plantas ao fundo"
+                fill
+              />
             </AspectRatio>
             <blockquote className="my-6 border-l-2 pl-6 italic">
               “A vida não tem sentido, à priori. Antes de começarmos a viver, a
               vida, em si, não é nada, mas nos cabe dar-lhe sentido, e o valor
-              da vida não é outra coisa senão este sentido que escolhemos”
+              da vida não é outra coisa senão este sentido que escolhemos.”
+              <footer className="mt-2">
+                <cite>Jean-Paul Sartre</cite>
+              </footer>
             </blockquote>
           </div>
           <div>

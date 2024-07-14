@@ -24,8 +24,8 @@ export default function Agendamento() {
   return (
     <div className="h-auto my-4 relative">
       <Image
-        src={"/assets/booking-bg.jpeg"}
-        alt=""
+        src="/assets/booking-bg.jpeg"
+        alt="Topo de uma árvore com folhas verdes e flores roxas, com um céu azul ao fundo"
         width={1920}
         height={1080}
       />

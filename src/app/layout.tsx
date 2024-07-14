@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import SessionProvider from "@/lib/SessionProvider";
 import Cookies from "@/components/cookies";
 import { Analytics } from "@vercel/analytics/react";
+import Footer from "@/components/footer";
 
 const fontSerif = Playfair_Display({
   subsets: ["latin"],
@@ -39,13 +40,14 @@ export default function RootLayout({
       className={`${fontSerif.variable} ${fontTitle.variable}`}
     >
       <SessionProvider>
-        <body
-          className={`${fontDefault.className} max-w-7xl m-auto px-4 bg-noise`}
-        >
-          <Header />
-          {children}
-          <Cookies />
-          <Analytics />
+        <body className={`${fontDefault.className}  relative`}>
+          <div className="max-w-7xl m-auto px-4">
+            <Header />
+            {children}
+            <Cookies />
+            <Analytics />
+          </div>
+          <Footer />
         </body>
       </SessionProvider>
     </html>

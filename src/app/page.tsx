@@ -31,6 +31,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { emailLink, whatsappLink } from "@/lib/utils";
+import BackgroundBlur from "@/components/ui/backgound-blur";
 
 export default function Home() {
   const handleWhatsAppClick = () => {
@@ -39,6 +40,11 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col my-5 gap-16">
+      <BackgroundBlur top="-10rem" left="50%" rotate="30deg" />
+      <BackgroundBlur top="50%" left="10%" rotate="25deg" />
+      <BackgroundBlur bottom="50%rem" left="100%" rotate="17deg" />
+      <BackgroundBlur bottom="-10rem" left="0%" rotate="30deg" />
+
       <div className="py-16">
         <h1 className="scroll-m-20 text-4xl font-light tracking-tight lg:text-5xl">
           BIANCA DA SILVA VIEIRA
@@ -171,7 +177,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex justify-evenly">
+        <div className="flex md:flex-row flex-col md:gap-0 gap-3 justify-evenly">
           <BenefitCard
             icon={<Eye className="w-8 h-8 mb-4" />}
             title="Autoconhecimento Profundo:"

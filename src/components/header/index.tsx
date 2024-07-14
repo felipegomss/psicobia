@@ -54,13 +54,6 @@ const ListLinks = () => {
         Página inicial
       </Link>
       <Link
-        href="/"
-        className="text-sm font-medium hover:underline"
-        prefetch={false}
-      >
-        Quem sou?
-      </Link>
-      <Link
         href="/agendamento"
         className="text-sm font-medium hover:underline"
         prefetch={false}
@@ -69,7 +62,7 @@ const ListLinks = () => {
       </Link>
 
       <Link
-        href="/"
+        href="/contato"
         className="text-sm font-medium hover:underline"
         prefetch={false}
       >
@@ -77,7 +70,6 @@ const ListLinks = () => {
       </Link>
       {session?.status !== "authenticated" ? (
         <Button
-          // variant={"primary"}
           onClick={() => router.push("/login")}
           className="text-sm font-medium hover:underline"
         >

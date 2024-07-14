@@ -43,7 +43,7 @@ export default function Home() {
       <BackgroundBlur top="-10rem" left="50%" rotate="30deg" />
       <BackgroundBlur top="50%" left="10%" rotate="25deg" />
       <BackgroundBlur bottom="50%rem" left="100%" rotate="17deg" />
-      <BackgroundBlur bottom="-10rem" left="0%" rotate="30deg" />
+      <BackgroundBlur bottom="10rem" left="0%" rotate="30deg" />
 
       <div className="py-16">
         <h1 className="scroll-m-20 text-4xl font-light tracking-tight lg:text-5xl">

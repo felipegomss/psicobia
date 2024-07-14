@@ -41,7 +41,7 @@ export default function RootLayout({
     >
       <SessionProvider>
         <body className={`${fontDefault.className}  relative`}>
-          <div className="max-w-7xl m-auto px-4">
+          <div className="max-w-7xl m-auto px-4 py-8">
             <Header />
             {children}
             <Cookies />

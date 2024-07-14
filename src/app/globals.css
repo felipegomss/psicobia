@@ -44,6 +44,10 @@
     font-family: var(--font-title), sans-serif;
   }
 
+  h2 {
+    text-transform: uppercase;
+  }
+
   h2,
   h3 {
     font-family: var(--font-serif), serif;

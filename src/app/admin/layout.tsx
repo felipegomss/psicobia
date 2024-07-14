@@ -59,7 +59,7 @@ export default function AdminLayout({
     };
 
     fetchAdminStatus();
-  }, [session]);
+  }, [session, db]);
 
   if (loading) {
     return (

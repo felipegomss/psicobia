@@ -63,7 +63,7 @@ export default function Admin() {
 
   useEffect(() => {
     fetchPacientes();
-  }, [db]);
+  }, [db, fetchPacientes]);
 
   async function handleAtiveChange(id: string) {
     const user = pacientes.find((paciente) => paciente.id === id);

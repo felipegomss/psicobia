@@ -1,7 +1,6 @@
 "use client";
 
-import { Flower2, MenuIcon } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { Calendar, Flower2, MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
@@ -41,9 +40,7 @@ const Header = () => {
 };
 
 const ListLinks = () => {
-  const session = useSession();
   const router = useRouter();
-
   return (
     <div className="flex md:flex-row md:items-center flex-col items-start gap-6 ">
       <Link
@@ -53,13 +50,6 @@ const ListLinks = () => {
       >
         Página inicial
       </Link>
-      <Link
-        href="/agendamento"
-        className="text-sm font-medium hover:underline"
-        prefetch={false}
-      >
-        Agendar encontro
-      </Link>
 
       <Link
         href="/contato"
@@ -68,18 +58,10 @@ const ListLinks = () => {
       >
         Contato
       </Link>
-      {session?.status !== "authenticated" ? (
-        <Button
-          onClick={() => router.push("/login")}
-          className="text-sm font-medium hover:underline"
-        >
-          Entrar
-        </Button>
-      ) : (
-        <Button variant={"outline"} onClick={() => signOut()}>
-          Sair
-        </Button>
-      )}
+
+      <Button variant={"outline"} onClick={() => router.push("/agendamento")}>
+        <Calendar className="mr-2 h-4 w-4" /> Agendar um encontro
+      </Button>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 import { Toaster } from "@/components/ui/sonner";
+import { whatsappLink } from "@/lib/utils";
 import { Flower2 } from "lucide-react";
 import { signIn } from "next-auth/react";
 import React, { useState } from "react";
@@ -120,8 +121,9 @@ export default function Login() {
           <p className="mt-10 text-center text-sm text-zinc-500">
             Não tem uma conta?{" "}
             <a
-              href="/nova-senha"
+              href={whatsappLink}
               className="font-semibold leading-6 text-primary hover:text-amber-800"
+              target="_blank"
             >
               Solicite seu acesso
             </a>

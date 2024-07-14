@@ -103,7 +103,7 @@ export default function Contato() {
   }
 
   return (
-    <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div className="px-6 py-24 sm:py-32 lg:px-8">
       <BackgroundBlur top="-10rem" left="0" rotate="45deg" />
 
       <div className="mx-auto max-w-2xl text-center">

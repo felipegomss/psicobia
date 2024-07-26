@@ -14,7 +14,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 
 interface User {
   name?: string | null | undefined;
@@ -64,14 +64,14 @@ export default function Agendamento() {
         console.error("Erro ao buscar dados do usuário:", error);
         setActive(false);
       }
-    } else {
-      setActive(false);
     }
   };
 
   useEffect(() => {
     setUser(session?.data?.user);
   }, [session]);
+
+  console.log("Usuário ativo?", active);
 
   return (
     <div className="h-auto my-4 relative">

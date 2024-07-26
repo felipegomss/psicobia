@@ -188,13 +188,13 @@ export default function Home() {
         <div className="flex md:flex-row flex-col md:gap-0 gap-3 justify-evenly">
           <BenefitCard
             icon={<Eye className="w-8 h-8 mb-4" />}
-            title="Autoconhecimento Profundo:"
+            title="Saúde Mental:"
             text="Explore suas experiências e emoções de maneira genuína."
           />
 
           <BenefitCard
             icon={<Unlock className="w-8 h-8 mb-4" />}
-            title="Empoderamento:"
+            title="Autenticidade:"
             text="Desenvolva habilidades para lidar com dificuldades de forma mais consciente e eficaz."
           />
 

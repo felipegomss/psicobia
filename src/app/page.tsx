@@ -53,7 +53,7 @@ export default function Home() {
         <p className="text-xl text-muted-foreground">
           Psicologia Fenomenológica Existencial
         </p>
-        <p className="text-sm text-muted-foreground">CRP XX/XXXXX</p>
+        <p className="text-sm text-muted-foreground">CRP 03/31679</p>
       </div>
       <div className="grid md:grid-cols-2 gap-8 py-2">
         <div>

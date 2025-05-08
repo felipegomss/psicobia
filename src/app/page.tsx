@@ -51,7 +51,7 @@ export default function Home() {
           BIANCA DA SILVA VIEIRA
         </h1>
         <p className="text-xl text-muted-foreground">
-          Psicologia Fenomenológica Existencial
+          Psicóloga Fenomenológica Existencial
         </p>
         <p className="text-sm text-muted-foreground">CRP 03/31679</p>
       </div>

@@ -38,8 +38,11 @@ export default function Footer() {
         </div>
         <div>
           <p className="text-center text-sm text-gray-500">
-            © {new Date().getFullYear()} Bianca Vieira - CRP XX/XXXXX | Ideias
-            transformadas em código por{" "}
+            © {new Date().getFullYear()} Bianca da Silva Vieira - CRP 03/31679 |
+            Psicóloga Fenomenológica Existencial
+          </p>
+          <p className="text-center text-sm text-gray-500">
+            Ideias transformadas em código por{" "}
             <Link
               href="https://felipegomes.me"
               target="_blank"

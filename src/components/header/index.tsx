@@ -5,18 +5,19 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Header = () => {
   return (
     <header className="flex flex-col justify-between w-full">
       <div className="flex items-center justify-between h-16">
         <Link href="/" className="flex items-center" prefetch={false}>
-          <Flower2 className="h-10 w-10" />
-          <span className="leading-none">
-            Bianca
-            <br />
-            Vieira
-          </span>
+          <Image
+            src={"/assets/horizontal.png"}
+            alt=""
+            height={250}
+            width={250}
+          />
         </Link>
         <nav className="hidden md:flex gap-6">
           <ListLinks />

@@ -1,27 +1,19 @@
-import type { Metadata } from "next";
-import { Playfair_Display, Roboto, Raleway } from "next/font/google";
-import "./globals.css";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SessionProvider from "@/lib/SessionProvider";
-import Cookies from "@/components/cookies";
 import { Analytics } from "@vercel/analytics/react";
-import Footer from "@/components/footer";
+import type { Metadata } from "next";
+import { Playfair_Display, Roboto } from "next/font/google";
+import "./globals.css";
 
 const fontSerif = Playfair_Display({
   subsets: ["latin"],
-  weight: "700",
+  weight: ["700", "400", "900", "500"],
   variable: "--font-serif",
 });
 const fontDefault = Roboto({
   subsets: ["latin"],
   weight: ["700", "300", "400", "900", "100", "500"],
-});
-
-const fontTitle = Raleway({
-  subsets: ["latin"],
-  weight: ["700", "300", "400", "900", "100", "500"],
-  style: "italic",
-  variable: "--font-title",
 });
 
 export const metadata: Metadata = {
@@ -35,16 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-br"
-      className={`${fontSerif.variable} ${fontTitle.variable}`}
-    >
+    <html lang="pt-br" className={`${fontSerif.variable}`}>
       <SessionProvider>
-        <body className={`${fontDefault.className}  relative`}>
+        <body className={`${fontDefault.className} relative`}>
           <div className="max-w-7xl m-auto px-4 py-8">
             <Header />
             {children}
-            <Cookies />
             <Analytics />
           </div>
           <Footer />

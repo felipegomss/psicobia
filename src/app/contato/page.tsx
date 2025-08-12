@@ -1,16 +1,14 @@
 "use client";
 
+import Social from "@/components/social";
 import BackgroundBlur from "@/components/ui/backgound-blur";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/sonner";
-import { Instagram, Linkedin, Loader, Mail, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import { Loader } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
-import { emailLink, whatsappLink } from "@/lib/utils";
-import Email from "next-auth/providers/email";
-import Social from "@/components/social";
 
 export default function Contato() {
   const [email, setEmail] = useState("");
@@ -92,7 +90,9 @@ export default function Contato() {
         html: emailTemplate,
       }),
     }).then(() => {
-      toast.success("Obrigada pelo contato! Já já retorno seu contato.");
+      toast.success(
+        "Obrigada pelo contato! Vou te responder em breve pelo e-mail ou WhatsApp informado."
+      );
       setEmail("");
       setNome("");
       setSobrenome("");
@@ -220,7 +220,7 @@ export default function Contato() {
         <div className="mt-10">
           <button
             type="submit"
-            className="flex justify-center items-center w-full rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-amber-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="flex justify-center items-center w-full rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             disabled={loading}
           >
             {loading ? (
@@ -243,7 +243,7 @@ export default function Contato() {
           Você pode entrar em contato diretamente comigo por email, WhatsApp ou
           pelas redes sociais.
         </p>
-        <Social />
+        <Social variant="default" />
       </div>
     </div>
   );

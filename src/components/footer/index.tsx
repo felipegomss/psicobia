@@ -1,26 +1,16 @@
-import React from "react";
-import Social from "../social";
 import Link from "next/link";
+import Social from "../social";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F3EEEA] p-4 md:p-6 xl:p-8 ">
+    <footer className="bg-primary p-4 md:p-6 xl:p-8 text-white">
       <div className="max-w-7xl m-auto space-y-6">
         <div className=" md:flex md:items-center md:justify-between ">
           <ul className="flex items-center flex-wrap mb-6 md:mb-0">
             <li>
               <Link
-                href="/politica-de-privacidade"
-                className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
-              >
-                Politica de privacidade
-              </Link>
-            </li>
-
-            <li>
-              <Link
                 href="/agendamento"
-                className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                className="text-sm font-normal  hover:underline mr-4 md:mr-6"
               >
                 Agendar
               </Link>
@@ -28,24 +18,27 @@ export default function Footer() {
             <li>
               <Link
                 href="/contato"
-                className="text-sm font-normal text-gray-500 hover:underline"
+                className="text-sm font-normal  hover:underline"
               >
                 Contato
               </Link>
             </li>
           </ul>
-          <Social />
+          <Social variant="footer" />
         </div>
-        <div>
-          <p className="text-center text-sm text-gray-500">
-            © {new Date().getFullYear()} Bianca Vieira - CRP XX/XXXXX | Ideias
-            transformadas em código por{" "}
+        <div className="flex flex-col items-center justify-center gap-1 text-center">
+          <p className="text-sm">
+            © {new Date().getFullYear()} Bianca Vieira — CRP 03/31679. Todos os
+            direitos reservados.
+          </p>
+          <p className="text-sm">
+            Desenvolvido por{" "}
             <Link
-              href="https://felipegomes.me"
+              href="https://voidcc.com.br"
               target="_blank"
-              className="text-primary hover:underline"
+              className="text-white hover:underline"
             >
-              Felipe Gomes
+              Void Creative Code.
             </Link>
           </p>
         </div>

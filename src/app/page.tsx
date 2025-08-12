@@ -265,7 +265,7 @@ const BenefitCard = ({
   title: string;
   text: string;
 }) => (
-  <Card className="w-[350px]">
+  <Card className="md:w-[350px] w-full">
     <CardHeader>
       {icon}
       <CardTitle>{title}</CardTitle>

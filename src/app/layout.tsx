@@ -18,7 +18,7 @@ const fontDefault = Roboto({
 
 export const metadata: Metadata = {
   title: "Bianca Vieira - Psicologa",
-  description: "Psicologia Fenomenológica Existencial",
+  description: "Psicologia Clínica Fenomenológica Existencial",
 };
 
 export default function RootLayout({

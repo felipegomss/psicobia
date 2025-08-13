@@ -20,9 +20,11 @@ import { emailLink, whatsappLink } from "@/lib/utils";
 import { Calendar, Eye, Star, Unlock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 
 export default function Home() {
   const handleWhatsAppClick = () => {
+    track("click_whatsapp", { location: "hero" });
     window.open(whatsappLink, "_blank");
   };
 

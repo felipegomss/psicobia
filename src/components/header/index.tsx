@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { track } from "@vercel/analytics";
 
 const Header = () => {
   return (
@@ -43,6 +44,7 @@ const Header = () => {
 
 const ListLinks = () => {
   const handleWhatsAppClick = () => {
+    track("click_whatsapp", { location: "header" });
     window.open(whatsappLink, "_blank");
   };
 

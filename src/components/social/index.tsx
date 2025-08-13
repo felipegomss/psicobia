@@ -1,6 +1,9 @@
+"use client";
+
 import { cn, emailLink, whatsappLink } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Instagram, Mail, Phone } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 const socialLinkVariants = cva("transition-colors", {
   variants: {
@@ -22,11 +25,21 @@ export default function Social({ variant, className }: SocialProps) {
   const linkClass = cn(socialLinkVariants({ variant }));
   return (
     <div className={cn("flex justify-center space-x-6", className)}>
-      <a href={emailLink} target="_blank" className={linkClass}>
+      <a
+        href={emailLink}
+        target="_blank"
+        className={linkClass}
+        onClick={() => track("click_email", { location: variant ?? "default" })}
+      >
         <span className="sr-only">Email</span>
         <Mail className="h-6 w-6" />
       </a>
-      <a href={whatsappLink} target="_blank" className={linkClass}>
+      <a
+        href={whatsappLink}
+        target="_blank"
+        className={linkClass}
+        onClick={() => track("click_whatsapp", { location: variant ?? "default" })}
+      >
         <span className="sr-only">WhatsApp</span>
         <Phone className="h-6 w-6" />
       </a>
@@ -34,6 +47,7 @@ export default function Social({ variant, className }: SocialProps) {
         href="https://instagram.com/psicobiia"
         target="_blank"
         className={linkClass}
+        onClick={() => track("click_instagram", { location: variant ?? "default" })}
       >
         <span className="sr-only">Instagram</span>
         <Instagram className="h-6 w-6" />
